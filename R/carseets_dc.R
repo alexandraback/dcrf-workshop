@@ -1,4 +1,4 @@
-Carseats <- read.csv("carseats.csv");
+Carseats <- read.csv("../data/carseats.csv");
 require(tree)
 
 set.seed(42)
@@ -10,6 +10,5 @@ Carseats.test = Carseats[-train,]
 
 tree = tree(Sales~.,data=Carseats.train)
 summary(tree)
-
 plot(tree)
 text(tree,pretty=0)

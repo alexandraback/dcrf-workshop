@@ -1,40 +1,26 @@
-carseats <- read.csv("carseats.csv");
 
+weather_data <- read.csv("../data/weather.csv");
+print(weather_data)
 #SPLITTA I TRENINGSDATA OG
 #FUNKSJONER FÖR VARJE TRÄD
+#subset(my_df, subset = some_condition)
 
-
-calculate_entropy <- function(data, attribute, output) {
-  categorical_values <- get_categorical_values(data, attribute)
-  number_of_classes <- length(categorical_values)
-  categorical_values_for_output <- get_categorical_values(data,output)
-
-  for(categorical_value in categorical_values) {
-    #Räkna antall förekomster för attribute_value
-    count_number_of_rows_for_a_value <- nrows(dataset[ dataset$attribute == categorical_value, ])
-    sum <- 0
-    for(output_value in categorical_values_for_output) {
-        number_of_rows_for_value_for_output_class <- nrows(dataset[ dataset$attribute == categorical_value && dataset$output == output_value , ])
-        proportion <- count_number_of_rows_for_a_value/ number_of_rows_for_value_for_output_class
-        sum <- sum + (-proportion *log() )
-    }
-  }
-
-
+get_categorical_values <- function (data, attribute) {
+  as.set(data[,attribute])
 }
 
-get_categorical_values <- function (dataset, attribute) {
+categorical_values_for_output_vector <- get_categorical_values(weather_data, "play")
 
+get_number_of_occurence <- function (dataset, attribute, attribute_value) {
+  nrow(subset(dataset, attribute == attribute_value))
 }
 
-calculate_information_gain <- function(dataset, attribute) {
-
+##HVORDAN GØR MAN I R??
+get_proportion <- function(dataset, attribute, attribute_value, output ,output_value) {
+  nrow(subset(dataset, attribute == attribute_value))/nrow(subset(dataset, attribute == attribute_value & output == output_value))
 }
 
-general_decision_tree <- function(dataset) {
-  entropy_for_data_set <- calculate_entropy(dataset)
-  for (i in 0:ncol(carseats)-1) {
-    entropy_for_values <- calculate_entropy_categorical_values(get_categorical_values(attribute))
-    take_average_
-  }
+calculate_entropy <- function(dataset, attribute) {
 }
+
+calculate_entropy(weather_data, "outlook")
